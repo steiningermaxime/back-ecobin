@@ -6,6 +6,10 @@ const cors = require('cors'); // Importez le package cors
 const db = require('./database/database');
 
 const app = express();
+// Middleware pour ignorer les requêtes favicon
+app.get('/favicon.ico', (req, res) => res.status(204));
+
+// ... le reste de votre code ...
 
 // Configuration du CORS
 // Note : En production, vous devriez remplacer '*' par l'URL de votre frontend
@@ -17,8 +21,8 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // Importez les routes
-const employeeRoutes = require('./api/routes/employee');
-const poubelleRoutes = require('./api/routes/poubelle');
+const employeeRoutes = require('./src/routes/employee');
+const poubelleRoutes = require('./src/routes/poubelle');
 
 // Utilisez les routes
 app.use('/api/employee', employeeRoutes);
